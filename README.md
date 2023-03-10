@@ -1,13 +1,13 @@
 # Question 2
 For this lab, create 2 instances on AWS
 
-We will choose *Amazon Linux 2* as our OS
+We will choose **Amazon Linux 2** as our OS
 
 Instance 1 will be our cronos node
 
 Instance 2 will be our telemetry node
 
-Install ansible on both instances
+Install ansible and git on both instances
 ```sh
 sudo amazon-linux-extras install ansible2 -y
 sudo yum install git -y
@@ -34,6 +34,8 @@ ansible-playbook -idefault, -clocal playbook-telemetry.yaml
 Whitelist ports below in security group of instance 2
 * 3000 - grafana
 * 9090 - prometheus
+
+The url of grafana can be access on http://[instance 2 ip]:3000
 
 Then, login grafana with username `admin` and password `admin`
 
