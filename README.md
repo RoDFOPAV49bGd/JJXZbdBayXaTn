@@ -37,7 +37,9 @@ Whitelist ports below in security group of instance 2
 
 The url of grafana will be http://[instance 2 ip]:3000
 
-Then, login grafana with username `admin` and password `admin`
+The url of prometheus will be http://[instance 2 ip]:9090
+
+Login grafana with username `admin` and password `admin`
 
 Add a prometheus datasource with url `http://localhost:9090`
 
