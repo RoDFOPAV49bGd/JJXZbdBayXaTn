@@ -50,3 +50,5 @@ Create a new dashboard with [`dashboard.json`](https://github.com/RoDFOPAV49bGd/
 * Grafana dashboard json - [`dashboard.json`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/raw/master/dashboard.json)
 ## Assumptions and limitations
 * The telemetry playbook only works on AL2
+## Problems
+* The cronos node metrics only contains `tendermint_mempool_size`, but not `tendermint_consensus_block_size_bytes`, `tendermint_consensus_num_txs` nor `tendermint_consensus_rounds`
