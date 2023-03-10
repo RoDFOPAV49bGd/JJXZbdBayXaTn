@@ -36,6 +36,11 @@
   ansible.builtin.command: sed -i.bak -E 's#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' {{ ansible_env.HOME }}/.cronos/config/config.toml
 - name: Config timeout_commit
   ansible.builtin.command: sed -i.bak -E 's#^(timeout_commit[[:space:]]+=[[:space:]]+).*$#\1"5s"#' {{ ansible_env.HOME }}/.cronos/config/config.toml
+- name: Ensure prometheus
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_env.HOME }}/.cronos/config/config.toml"
+    regexp: '^prometheus ='
+    line: prometheus = true
 - name: Create cronosd service
   ansible.builtin.template:
     src: cronosd.service.j2
