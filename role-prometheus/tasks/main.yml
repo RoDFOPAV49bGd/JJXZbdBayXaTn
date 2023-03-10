@@ -9,5 +9,5 @@
     -d \
     -p 9090:9090 \
     -v {{ ansible_env.HOME }}/prometheus.yml:/etc/prometheus/prometheus.yml \
-    prom/prometheus
+    prom/prometheus:v{{ prometheus_version }}
   become: yes

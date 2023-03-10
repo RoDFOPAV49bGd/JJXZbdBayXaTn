@@ -1,3 +1,4 @@
 ---
 # vars file for role-prometheus
 cronos_node_ip: localhost
+prometheus_version: 2.37.6
