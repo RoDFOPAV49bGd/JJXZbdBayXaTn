@@ -3,7 +3,7 @@
 - name: Create prometheus yaml
   ansible.builtin.template:
     src: prometheus.yml.j2
-    dest: {{ ansible_env.HOME }}/prometheus.yml
+    dest: "{{ ansible_env.HOME }}/prometheus.yml"
 - name: Run prometheus
   ansible.builtin.command: docker run \
     -p 9090:9090 \
