@@ -5,7 +5,7 @@
   become: yes
 - name: Enable docker service
   ansible.builtin.systemd:
-    enabled: true
+    enabled: yes
     name: docker
     state: started
   become: yes

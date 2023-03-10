@@ -5,3 +5,9 @@
     name: https://dl.grafana.com/enterprise/release/grafana-enterprise-{{ grafana_version }}.x86_64.rpm
     state: present
   become: yes
+- name: Enable grafana server
+  ansible.builtin.systemd:
+    enabled: yes
+    name: grafana-server
+    state: started
+  become: yes
