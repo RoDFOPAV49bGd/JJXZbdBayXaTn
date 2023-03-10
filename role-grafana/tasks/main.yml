@@ -1,0 +1,7 @@
+---
+# tasks file for role-grafana
+- name: Install grafana
+  ansible.builtin.yum:
+    name: https://dl.grafana.com/enterprise/release/grafana-enterprise-{{ grafana_version }}.x86_64.rpm
+    state: present
+  become: yes

@@ -1,0 +1,3 @@
+---
+# vars file for role-grafana
+grafana_version: 9.4.3-1

@@ -2,4 +2,5 @@
   hosts: default
 
   roles:
+  - role: role-grafana
   - role: role-prometheus
