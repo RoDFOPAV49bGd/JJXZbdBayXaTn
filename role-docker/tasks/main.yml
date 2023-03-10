@@ -2,6 +2,8 @@
 # tasks file for role-docker
 - name: Install docker
   ansible.builtin.command: amazon-linux-extras install docker -y
+  args:
+    creates: /usr/bin/docker
   become: yes
 - name: Enable docker service
   ansible.builtin.systemd:
