@@ -43,4 +43,4 @@ Login grafana with username `admin` and password `admin`
 
 Add a prometheus datasource with url `http://localhost:9090`
 
-Create a new dashboard with `[dashboard.json](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/raw/master/dashboard.json)` as json model
+Create a new dashboard with [`dashboard.json`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/raw/master/dashboard.json) as json model
