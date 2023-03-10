@@ -28,7 +28,7 @@ Whitelist port `26660` (metrics) in security group of instance 1
 
 On instance 2, run playbook telemetry
 ```sh
-ansible-playbook -idefault, -clocal playbook-telemetry.yaml
+ansible-playbook -idefault, -clocal playbook-telemetry.yaml -e cronos_node_ip=[instance 1 ip]
 ```
 
 Whitelist ports below in security group of instance 2
