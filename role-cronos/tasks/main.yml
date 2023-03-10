@@ -1,0 +1,50 @@
+---
+# tasks file for role-cronos
+- name: Create /usr/local/bin/
+  ansible.builtin.file:
+    path: /usr/local/bin/
+    state: directory
+  become: yes
+- name: Install cronosd
+  ansible.builtin.unarchive:
+    creates: /usr/local/bin/cronosd
+    dest: /usr/local/bin/
+    remote_src: yes
+    src: https://github.com/crypto-org-chain/cronos/releases/download/v{{ cronos_version }}/cronos_{{ cronos_version }}_Linux_x86_64.tar.gz
+    extra_opts:
+    - --strip-components=1
+    - bin/cronosd
+  become: yes
+- name: Test cronosd
+  ansible.builtin.command: cronosd version
+- name: Remove old blockchain data
+  ansible.builtin.command: cronosd unsafe-reset-all
+- name: Remove old genesis file
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.cronos/config/genesis.json"
+    state: absent
+- name: Init cronosd
+  ansible.builtin.command: cronosd init {{ moniker }} --chain-id cronosmainnet_25-1
+- name: Download genesis.json
+  ansible.builtin.get_url:
+    checksum: sha256:{{ genesis_json_checksum }}
+    dest: "{{ ansible_env.HOME }}/.cronos/config/genesis.json"
+    url: https://raw.githubusercontent.com/crypto-org-chain/cronos-mainnet/master/cronosmainnet_25-1/genesis.json
+- name: Config seed
+  ansible.builtin.command: sed -i.bak -E 's#^(seeds[[:space:]]+=[[:space:]]+).*$#\1"0d5cf1394a1cfde28dc8f023567222abc0f47534@cronos-seed-0.crypto.org:26656,3032073adc06d710dd512240281637c1bd0c8a7b@cronos-seed-1.crypto.org:26656,04f43116b4c6c70054d9c2b7485383df5b1ed1da@cronos-seed-2.crypto.org:26656,337377dcda43d79c537d2c4d93ad3b698ce9452e@bd-cronos-mainnet-seed-node-01.bdnodes.net:26656"#' {{ ansible_env.HOME }}/.cronos/config/config.toml
+- name: Config create_empty_blocks_interval
+  ansible.builtin.command: sed -i.bak -E 's#^(create_empty_blocks_interval[[:space:]]+=[[:space:]]+).*$#\1"5s"#' {{ ansible_env.HOME }}/.cronos/config/config.toml
+- name: Config timeout_commit
+  ansible.builtin.command: sed -i.bak -E 's#^(timeout_commit[[:space:]]+=[[:space:]]+).*$#\1"5s"#' {{ ansible_env.HOME }}/.cronos/config/config.toml
+- name: Create cronosd service
+  ansible.builtin.template:
+    src: cronosd.service.j2
+    dest: /etc/systemd/system/cronosd.service
+  become: yes
+- name: Enable cronosd service
+  systemd:
+    daemon_reload: yes
+    enabled: yes
+    name: cronosd
+    state: restarted
+  become: yes

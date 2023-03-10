@@ -1,0 +1,5 @@
+- name: Create cronos
+  hosts: default
+
+  roles:
+  - role: role-cronos
