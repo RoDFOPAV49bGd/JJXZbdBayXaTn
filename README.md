@@ -6,5 +6,5 @@ sudo amazon-linux-extras install ansible2 -y
 ```
 
 ```sh
-ansible-playbook -idefault, -clocal playbook.yaml
+ansible-playbook -idefault, -clocal playbook-cronos.yaml
 ```

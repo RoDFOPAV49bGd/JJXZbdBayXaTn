@@ -1,0 +1,17 @@
+---
+# tasks file for role-docker
+- name: Install docker
+  ansible.builtin.command: amazon-linux-extras install docker -y
+  become: yes
+- name: Enable docker service
+  ansible.builtin.systemd:
+    enabled: true
+    name: docker
+    state: start
+  become: yes
+- name: Append ec2-user to docker group
+  ansible.builtin.user:
+    name: ec2-user
+    groups: docker
+    append: yes
+  become: yes
