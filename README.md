@@ -35,7 +35,7 @@ Whitelist ports below in security group of instance 2
 * 3000 - grafana
 * 9090 - prometheus
 
-The url of grafana can be access on http://[instance 2 ip]:3000
+The url of grafana will be http://[instance 2 ip]:3000
 
 Then, login grafana with username `admin` and password `admin`
 
