@@ -7,7 +7,7 @@
   ansible.builtin.systemd:
     enabled: true
     name: docker
-    state: start
+    state: started
   become: yes
 - name: Append ec2-user to docker group
   ansible.builtin.user:
