@@ -6,6 +6,7 @@
     dest: "{{ ansible_env.HOME }}/prometheus.yml"
 - name: Run prometheus
   ansible.builtin.command: docker run \
+    -d \
     -p 9090:9090 \
     -v {{ ansible_env.HOME }}/prometheus.yml:/etc/prometheus/prometheus.yml \
     prom/prometheus
