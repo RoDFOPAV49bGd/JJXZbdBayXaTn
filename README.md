@@ -21,7 +21,7 @@ cd JJXZbdBayXaTn/
 
 On instance 1, run playbook cronos
 ```sh
-ansible-playbook -idefault, -clocal playbook-cronos.yaml
+ansible-playbook -idefault, -clocal playbook-cronos.yaml -e moniker=my-awesome-node
 ```
 
 Whitelist port `26660` (metrics) in security group of instance 1

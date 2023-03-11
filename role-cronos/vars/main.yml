@@ -2,4 +2,4 @@
 # vars file for role-cronos
 cronos_version: 0.6.11
 genesis_json_checksum: 58f17545056267f57a2d95f4c9c00ac1d689a580e220c5d4de96570fbbc832e1
-moniker: pegasus-node
+moniker: my-awesome-node
