@@ -40,10 +40,13 @@ export class CdkQuestion1Stack extends cdk.Stack {
       }),
       securityGroup: sg,
       maxCapacity: 10,
-      vpcSubnets: {
-        subnetType: ec2.SubnetType.PUBLIC,
-      },
-      keyName: "test",
+    });
+
+    new autoscaling.TargetTrackingScalingPolicy(this, "ScalingPolicy", {
+      autoScalingGroup: asg,
+      targetValue: 80,
+      predefinedMetric:
+        autoscaling.PredefinedMetric.ASG_AVERAGE_CPU_UTILIZATION,
     });
 
     const listener = alb.addListener("Listener", {
