@@ -1,6 +1,6 @@
 # Question 1
 ![](question1-arch.png)
-In this lab, we want the application runs on Amazon Linux 2 (AL2) with docker image
+In this lab, we will run the Rust application Amazon Linux 2 (AL2) with docker
 
 |Name|Choice|
 |---|---|
