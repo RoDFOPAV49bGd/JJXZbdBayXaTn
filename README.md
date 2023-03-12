@@ -82,7 +82,10 @@ Copy the raw [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayX
 * CDK written in Typescript - [`cdk-question-1-stack.ts`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/master/cdk-question-1/lib/cdk-question-1-stack.ts)
 * Urlshortener written in Rust - [`urlshortener/src/`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/tree/master/urlshortener/src)
 * Architecture diagram written in Plantuml - [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/raw/master/question1-arch.puml)
-
+## Assumptions and limitations
+* The `DOMAIN` is an environment variable, which is know after Cloudfront is provision
+    1. We need to update CDK
+    2. And do an instance refresh under the ASG
 # Question 2
 In this lab, create 2 instances on AWS
 
