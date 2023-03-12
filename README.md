@@ -56,6 +56,12 @@ npm i
 cdk synth
 cdk deploy
 ```
+To run our plantuml
+
+https://www.planttext.com/
+
+Copy the raw puml and paste it into the editor
+
 ## Deliverables
 * CDK written in Typescript
 * Urlshortener written in Rust
