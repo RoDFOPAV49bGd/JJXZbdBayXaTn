@@ -70,7 +70,7 @@ Or simply
 ```sh
 docker run -p8000:8000 -d -e DOMAIN=https://mydomain.com whshk/jjxzbdbayxatn:v1
 ```
-Note that this image is design to work on AL2
+Note that this image is design to run on AL2, please check [`cdk-question-1-stack.ts`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/407f9321a40d03aeabfdf9933171c606b19a80ae/cdk-question-1/lib/cdk-question-1-stack.ts#L81-L82) for more details
 ### Plantuml
 To run our Plantuml
 
