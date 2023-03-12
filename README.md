@@ -84,7 +84,7 @@ Copy the raw [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayX
 * Architecture diagram written in Plantuml - [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/raw/master/question1-arch.puml)
 ## Assumptions and limitations
 * The [`DOMAIN`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/db919bd317bc29e76f3aaf71fd7d94fb2caa1382/urlshortener/src/main.rs#L48) is an environment variable only know after Cloudfront is provision
-    1. We need to update CDK
+    1. We need to first update our CDK [user data](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/22b6ae1f895a22f719d506cb5648c312607787e3/cdk-question-1/lib/cdk-question-1-stack.ts#L77)
     2. Follow by an instance refresh to get the correct `shortUrl`
 # Question 2
 In this lab, create 2 instances on AWS
