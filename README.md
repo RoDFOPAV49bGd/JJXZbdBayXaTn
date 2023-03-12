@@ -2,6 +2,7 @@
 ![](question1-arch.png)
 In this lab, we will run the Rust application Amazon Linux 2 (AL2) with docker
 
+Table below will be our tech stack
 |Name|Choice|
 |---|---|
 |Technology|Docker|
