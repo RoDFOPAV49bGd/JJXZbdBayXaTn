@@ -1,3 +1,5 @@
+# Question 1
+![](question1-arch.png)
 # Question 2
 For this lab, create 2 instances on AWS
 

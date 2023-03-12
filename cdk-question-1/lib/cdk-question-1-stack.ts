@@ -41,6 +41,7 @@ export class CdkQuestion1Stack extends cdk.Stack {
       }),
       securityGroup: sg,
       maxCapacity: 10,
+      minCapacity: 2,
     });
 
     new autoscaling.TargetTrackingScalingPolicy(this, "ScalingPolicy", {
