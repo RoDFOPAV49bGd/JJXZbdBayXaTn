@@ -43,6 +43,8 @@ Our choice:
 * Docker as our container orchestrator to run our docker image
 * Rust for our application
 * Dynamodb as our database which is a managed service, we deploy it in a region (us-east-1) so it is HA
+## Deliverables
+
 
 # Question 2
 In this lab, create 2 instances on AWS
