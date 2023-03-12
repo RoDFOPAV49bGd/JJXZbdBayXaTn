@@ -56,10 +56,9 @@ impl ShortId<'_> {
             .items
             .unwrap();
 
-        match items.first() {
-            Some(m) => Ok(m.get("url").unwrap().as_s().unwrap().clone()),
-            _ => Ok("".to_string()),
-        }
+        Ok(items
+            .first()
+            .map_or("".to_string(), |m| m.get("url").unwrap().as_s().unwrap().clone()))
     }
 }
 

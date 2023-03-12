@@ -4,22 +4,22 @@ extern crate rocket;
 mod short_id;
 
 use rocket::response::{status::NotFound, Redirect};
-use rocket::serde::{Serialize, json::Json, Deserialize};
+use rocket::serde::{json::Json, Deserialize, Serialize};
 use short_id::ShortId;
 
 #[derive(Responder)]
-enum MyResponse {
+enum ResponseGet {
     Redirect(Redirect),
     NotFound(NotFound<String>),
 }
 
 #[get("/<id>")]
-async fn retrieve(id: ShortId<'_>) -> MyResponse {
+async fn retrieve(id: ShortId<'_>) -> ResponseGet {
     let url = id.get_url().await.unwrap_or("".to_string());
     if url == "" {
-        return MyResponse::NotFound(NotFound("".to_string()));
+        ResponseGet::NotFound(NotFound("".to_string()))
     } else {
-        return MyResponse::Redirect(Redirect::to(url));
+        ResponseGet::Redirect(Redirect::to(url))
     }
 }
 
@@ -34,13 +34,16 @@ struct ResponseUrl {
     shortenUrl: String,
 }
 
-#[post("/newurl", data = "<u>")]
-async fn create(u: Json<Url>) -> Json<ResponseUrl> {
-    let url = u.url.clone();
+#[post("/newurl", data = "<url>")]
+async fn create(url: Json<Url>) -> Json<ResponseUrl> {
+    let url = url.url.clone();
 
     let id = ShortId::new().set_url(&url).await;
 
-    Json(ResponseUrl{url: url, shortenUrl: id.unwrap()})
+    Json(ResponseUrl {
+        url: url,
+        shortenUrl: id.unwrap(),
+    })
 }
 
 #[launch]
