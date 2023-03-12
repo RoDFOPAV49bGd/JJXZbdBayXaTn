@@ -1,7 +1,8 @@
 # Question 1
 ![](question1-arch.png)
+In this lab, we want the application runs on Amazon Linux 2 (AL2) with docker image
 # Question 2
-For this lab, create 2 instances on AWS
+In this lab, create 2 instances on AWS
 
 We will choose **Amazon Linux 2** as our OS
 
