@@ -36,7 +36,7 @@ Table below is a summary of our components
 |Database|Dynamodb|Managed|Regional (can be global)|
 
 Our choice:
-* Cloudfront as our cache can improve performance at the same time implement our rate limit policy through WAF WebACL
+* Cloudfront as our cache can improve performance at the same time we can implement our rate limit policy through WAF Web ACL
 * Application Load Balancer (ALB) as our load balancer and placed it in 2 **public** subnets (us-east-1a and us-east-1b) within a VPC for HA
 * Auto Scaling Group (ASG) to manage our AL2 instances across the 2 **private** subnets (for HA) with target tracking scaling policy (CPU utilization 80%) to scale in and out within our range of 2 to 10 instances
 * Amazone Linux 2 (AL2) as our OS for its security
