@@ -93,7 +93,7 @@ We will choose **Amazon Linux 2** as our OS
 
 Instance 1 will be our cronos node
 
-Instance 2 will be our telemetry node
+Instance 2 will be our telemetry server
 
 Install ansible and git on both instances
 ```sh
