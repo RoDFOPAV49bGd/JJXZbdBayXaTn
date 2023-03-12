@@ -44,6 +44,7 @@ Our choice:
 * Rust for our application
 * Dynamodb as our database which is a managed service, we deploy it in a region (us-east-1) it is HA by design
 ## Run instructions
+### CDK
 Follow the following page to setup awscli and cdk
 
 https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_prerequisites
@@ -56,7 +57,9 @@ npm i
 cdk synth
 cdk deploy
 ```
-To run our plantuml
+### Urlshortener
+### Plantuml
+To run our Plantuml
 
 https://www.planttext.com/
 
