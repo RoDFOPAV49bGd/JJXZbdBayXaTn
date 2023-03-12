@@ -1,6 +1,15 @@
 # Question 1
 ![](question1-arch.png)
 In this lab, we want the application runs on Amazon Linux 2 (AL2) with docker image
+
+|Name|Choice|
+|---|---|
+|Technology|Docker|
+|Programming language|Rust|
+|Database|Dynamodb|
+|Cache|Cloudfront|
+
+
 # Question 2
 In this lab, create 2 instances on AWS
 
