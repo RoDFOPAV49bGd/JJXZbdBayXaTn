@@ -63,7 +63,7 @@ To run our Plantuml
 
 https://www.planttext.com/
 
-Copy the raw puml and paste it into the editor
+Copy the raw [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/raw/master/question1-arch.puml) and paste it into the editor
 
 ## Deliverables
 * CDK written in Typescript
