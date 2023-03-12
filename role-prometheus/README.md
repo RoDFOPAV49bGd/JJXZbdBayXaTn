@@ -1,1 +1,1 @@
-This is an ansible role to install prometheus
+This is an ansible role for installing prometheus
