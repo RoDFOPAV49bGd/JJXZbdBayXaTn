@@ -23,15 +23,16 @@ The goals of the design are
 * Application packed in container image for easy deploy and update
 * Scalable when traffic increases or decreases with no code change
 
-
-|Name|Choice|Summary|
-|---|---|---|
-|Cache|Cloudfront|Managed, global|
-|Load balancer|ALB|Managed, regional|
-|Auto scaling|ASG|Managed, regional|
-|Technology|Docker||
-|Programming language|Rust||
-|Database|Dynamodb||
+Table below is a summary of our components
+|Component|Choice|Self-hosted or managed|Global or regional|Remarks|
+|---|---|---|---|---|
+|Cache|Cloudfront|Managed|Global||
+|Load balancer|ALB|Managed|Regional||
+|Auto scaling|ASG|Managed|Regional||
+|OS|AL2|Self-hosted|x||
+|Orchestrator|Docker|Self-hosted|x||
+|Programming language|Rust|x|x||
+|Database|Dynamodb|Managed|Global or region|We put a table in a region here instead of choosing a global table|
 
 We choose Cloudfront as our cache, Cloudfront is managed and it is a global resource
 
