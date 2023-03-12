@@ -43,6 +43,19 @@ Our choice:
 * Docker as our container orchestrator to run our docker image
 * Rust for our application
 * Dynamodb as our database which is a managed service, we deploy it in a region (us-east-1) it is HA by design
+## Run instructions
+Follow the following page to setup awscli and cdk
+
+https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_prerequisites
+
+To run our cdk
+
+```sh
+cd cdk-question-1/
+npm i
+cdk synth
+cdk deploy
+```
 ## Deliverables
 * CDK written in Typescript
 * Urlshortener written in Rust
