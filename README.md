@@ -58,6 +58,14 @@ cdk synth
 cdk deploy
 ```
 ### Urlshortener
+
+To run our urlshortener
+
+```sh
+cd urlshortener/
+docker build -t urlshortener .
+docker run -p8000:8000 -d -e DOMAIN=https://mydomain.com urlshortener
+```
 ### Plantuml
 To run our Plantuml
 
