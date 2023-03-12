@@ -85,7 +85,7 @@ Copy the raw [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayX
 ## Assumptions and limitations
 * The [`DOMAIN`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/db919bd317bc29e76f3aaf71fd7d94fb2caa1382/urlshortener/src/main.rs#L48) is an environment variable only know after Cloudfront is provision
     1. We need to update CDK
-    2. And do an instance refresh under the ASG
+    2. Follow by an instance refresh to get the correct `shortUrl`
 # Question 2
 In this lab, create 2 instances on AWS
 
