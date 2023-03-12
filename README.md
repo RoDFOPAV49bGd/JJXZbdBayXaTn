@@ -59,7 +59,7 @@ cdk deploy
 ## Deliverables
 * CDK written in Typescript
 * Urlshortener written in Rust
-* Architecture diagram written in Plantuml
+* Architecture diagram written in Plantuml - [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/raw/master/question1-arch.puml)
 
 # Question 2
 In this lab, create 2 instances on AWS
