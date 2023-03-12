@@ -2,6 +2,22 @@
 ![](question1-arch.png)
 In this lab, we will run our Rust application on Amazon Linux 2 (AL2) with docker
 
+Image above shows
+1. user request our Rust application through Cloudfront
+  a. If cache hit, Cloudfront will return the cache
+  b. If cache miss, see 2
+2. Cloudfront forward the request to ALB
+3. ALB forward the request to an instance
+  1. ALB listener listen for request
+  2. The listener forward traffic to a target group
+  3. The ASG is registed as a target of the target group
+  4. The traffic send to an instance
+4. The Rust application request Dynamodb for data
+5. The Dynamodb return data
+6. Response return to ALB
+7. Response return to Cloudfront
+8. Response return to user
+
 Table below shows our tech stack
 |Name|Choice|Summary|
 |---|---|---|
