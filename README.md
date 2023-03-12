@@ -1,15 +1,21 @@
 # Question 1
 ![](question1-arch.png)
-In this lab, we will run the Rust application Amazon Linux 2 (AL2) with docker
+In this lab, we will run our Rust application on Amazon Linux 2 (AL2) with docker
 
-Table below will be our tech stack
-|Name|Choice|
-|---|---|
-|Technology|Docker|
-|Programming language|Rust|
-|Database|Dynamodb|
-|Cache|Cloudfront|
+Table below shows our tech stack
+|Name|Choice|Summary|
+|---|---|---|
+|Cache|Cloudfront|Managed, global|
+|Load balancer|ALB|Managed, regional|
+|Technology|Docker||
+|Programming language|Rust||
+|Database|Dynamodb||
 
+We choose Cloudfront as our cache, Cloudfront is managed and it is a global resource
+
+We choose Application Load Balancer (ALB) as our load balancer, ALB is managed, it is a regional resource and it can be placed in subnets (us-east-1a and us-east-1b here) within a VPC
+
+Dynamodb as our database, dynamodb is a regional or global resource, we choose regional, so it is HA
 
 # Question 2
 In this lab, create 2 instances on AWS
