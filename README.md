@@ -44,7 +44,9 @@ Our choice:
 * Rust for our application
 * Dynamodb as our database which is a managed service, we deploy it in a region (us-east-1) it is HA by design
 ## Deliverables
-
+* CDK written in Typescript
+* Urlshortener written in Rust
+* Architecture diagram written in Plantuml
 
 # Question 2
 In this lab, create 2 instances on AWS
