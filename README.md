@@ -6,7 +6,7 @@ In this lab, we will run our Rust application on Amazon Linux 2 (AL2) with docke
 The image above shows how it works
 1. User request our Rust application through Cloudfront
     * If cache hit, Cloudfront will return the cache
-    * If cache miss, see 2
+    * If cache miss, go to 2
 2. Cloudfront has ALB set as its origin forward the request to ALB
 3. The ALB listener has a ASG set as its target group's target therefore forward the request to one of the instances in the ASG
 4. The Rust application received the request and ask Dynamodb table `urlshortener` for data
