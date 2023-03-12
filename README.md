@@ -24,16 +24,16 @@ The goals of the design are
 * Scalable when traffic increases or decreases with no code change
 
 Table below is a summary of our components
-|Component|Choice|Self-hosted or managed|Global or regional|Remarks|
-|---|---|---|---|---|
-|Cache|Cloudfront|Managed|Global||
-|Rate limiting|WAF (Web ACL)|Managed|Global||
-|Load balancer|ALB|Managed|Regional||
-|Auto scaling|ASG|Managed|Regional||
+|Component|Choice|Self-hosted or managed|Global or regional|
+|---|---|---|---|
+|Cache|Cloudfront|Managed|Global|
+|Rate limiting|WAF (Web ACL)|Managed|Global|
+|Load balancer|ALB|Managed|Regional|
+|Auto scaling|ASG|Managed|Regional|
 |OS|AL2|Self-hosted|x||
-|Orchestrator|Docker|Self-hosted|x||
+|Orchestrator|Docker|Self-hosted|x|
 |Programming language|Rust|x|x||
-|Database|Dynamodb|Managed|Global or region|We put our table in a region|
+|Database|Dynamodb|Managed|Region (can be global)|
 
 Our choice:
 * Cloudfront as our cache can improve performance at the same time implement our rate limit policy through WAF WebACL
