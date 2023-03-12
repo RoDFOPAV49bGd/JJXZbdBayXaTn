@@ -8,6 +8,7 @@ import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as elbv2 from "aws-cdk-lib/aws-elasticloadbalancingv2";
 import * as iam from "aws-cdk-lib/aws-iam";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
+import * as wafv2 from "aws-cdk-lib/aws-wafv2";
 
 export class CdkQuestion1Stack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -56,27 +57,46 @@ export class CdkQuestion1Stack extends cdk.Stack {
             "dynamodb:Update*",
             "dynamodb:PutItem",
           ],
-          resources: ["arn:aws:dynamodb:*:*:table/urlshortener"],
+          resources: ["arn:aws:dynamodb:*:*:table/urlshortener-jjxzbdbayxatn"],
         }),
       ],
     });
 
     const role = new iam.Role(this, "Role", {
       assumedBy: new iam.ServicePrincipal("ec2.amazonaws.com"),
+      inlinePolicies: {
+        policy,
+      },
     });
 
-    const asg = new autoscaling.AutoScalingGroup(this, "Asg", {
-      vpc,
+    const userData = ec2.UserData.forLinux();
+    userData.addCommands(
+      "amazon-linux-extras install docker -y",
+      "sudo systemctl enable --now docker",
+      "docker pull whshk/jjxzbdbayxatn:v1",
+      "docker run -p8000:8000 -d whshk/jjxzbdbayxatn:v1"
+    );
+
+    const launchTemplate = new ec2.LaunchTemplate(this, "LaunchTemplate", {
+      httpPutResponseHopLimit: 3,
+      httpTokens: ec2.LaunchTemplateHttpTokens.REQUIRED,
+      machineImage: new ec2.AmazonLinuxImage({
+        generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
+      }),
       instanceType: ec2.InstanceType.of(
         ec2.InstanceClass.T2,
         ec2.InstanceSize.MICRO
       ),
-      machineImage: new ec2.AmazonLinuxImage({
-        generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
-      }),
+      role,
+      userData,
       securityGroup: sg,
+    });
+
+    const asg = new autoscaling.AutoScalingGroup(this, "Asg", {
+      vpc,
       maxCapacity: 10,
       minCapacity: 2,
+      launchTemplate,
     });
 
     new autoscaling.TargetTrackingScalingPolicy(this, "ScalingPolicy", {
@@ -91,8 +111,40 @@ export class CdkQuestion1Stack extends cdk.Stack {
     });
 
     listener.addTargets("Targets", {
-      port: 80,
+      port: 8000,
       targets: [asg],
+    });
+
+    const acl = new wafv2.CfnWebACL(this, "Acl", {
+      defaultAction: { allow: {} },
+      scope: "CLOUDFRONT",
+      visibilityConfig: {
+        cloudWatchMetricsEnabled: true,
+        metricName: "waf-cloudfront-jjxzbdbayxatn",
+        sampledRequestsEnabled: true,
+      },
+      description: "WAF Cloudfront",
+      name: "waf-cloudfront-jjxzbdbayxatn",
+      rules: [
+        {
+          name: "RateLimit100-jjxzbdbayxatn",
+          priority: 1,
+          action: {
+            block: {},
+          },
+          statement: {
+            rateBasedStatement: {
+              limit: 100,
+              aggregateKeyType: "IP",
+            },
+          },
+          visibilityConfig: {
+            sampledRequestsEnabled: true,
+            cloudWatchMetricsEnabled: true,
+            metricName: "RateLimit100-jjxzbdbayxatn",
+          },
+        },
+      ],
     });
 
     new cloudfront.Distribution(this, "Distribution", {
@@ -101,10 +153,11 @@ export class CdkQuestion1Stack extends cdk.Stack {
           protocolPolicy: cloudfront.OriginProtocolPolicy.HTTP_ONLY,
         }),
       },
+      webAclId: acl.attrArn,
     });
 
     new dynamodb.Table(this, "Table", {
-      tableName: "urlshortener",
+      tableName: "urlshortener-jjxzbdbayxatn",
       partitionKey: { name: "shortid", type: dynamodb.AttributeType.STRING },
     });
   }

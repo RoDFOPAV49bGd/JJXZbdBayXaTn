@@ -6,6 +6,7 @@ mod short_id;
 use rocket::response::{status::NotFound, Redirect};
 use rocket::serde::{json::Json, Deserialize, Serialize};
 use short_id::ShortId;
+use std::env;
 
 #[derive(Responder)]
 enum ResponseGet {
@@ -42,7 +43,11 @@ async fn create(url: Json<Url>) -> Json<ResponseUrl> {
 
     Json(ResponseUrl {
         url: url,
-        shortenUrl: id.unwrap(),
+        shortenUrl: format!(
+            "{}/{}",
+            env::var("DOMAIN").unwrap_or("https://shortenurl.org".to_string()),
+            id.unwrap()
+        ),
     })
 }
 
