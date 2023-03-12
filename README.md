@@ -7,15 +7,24 @@ Table below shows our tech stack
 |---|---|---|
 |Cache|Cloudfront|Managed, global|
 |Load balancer|ALB|Managed, regional|
+|Auto scaling|ASG|Managed, regional|
 |Technology|Docker||
 |Programming language|Rust||
 |Database|Dynamodb||
 
 We choose Cloudfront as our cache, Cloudfront is managed and it is a global resource
 
-We choose Application Load Balancer (ALB) as our load balancer, ALB is managed, it is a regional resource and it can be placed in subnets (us-east-1a and us-east-1b here) within a VPC
+We choose Application Load Balancer (ALB) as our load balancer, ALB is managed, it is a regional resource and it can be placed in subnets (e.g. us-east-1a and us-east-1b here) within a VPC
 
-Dynamodb as our database, dynamodb is a regional or global resource, we choose regional, so it is HA
+We choose Auto Scaling Group (ASG) as our auto scaling solution, ASG is managed, regional, can be placed in subnets within a VPC and it can set a scaling policy(e.g. 80% CPU utilization here), min and max no. of instances
+
+We choose Amazone Linux 2 (AL2) as our OS
+
+We choose Docker as our container orchestrator
+
+We choose Rust for our application
+
+We choose Dynamodb as our database, dynamodb is a regional or global resource, we choose regional, so it is HA
 
 # Question 2
 In this lab, create 2 instances on AWS
