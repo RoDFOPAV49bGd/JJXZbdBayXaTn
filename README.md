@@ -38,7 +38,7 @@ Table below is a summary of our components
 Our choice:
 * Cloudfront as our cache can improve performance at the same time implement our rate limit policy through WAF WebACL
 * Application Load Balancer (ALB) as our load balancer and placed it in 2 subnets (us-east-1a and us-east-1b) within a VPC for HA
-* Auto Scaling Group (ASG) to manage our AL2 instances across the 2 subnet (for HA) with target tracking scaling policy (80% CPU utilization) to scale in and out within our range of 2 to 10 instances
+* Auto Scaling Group (ASG) to manage our AL2 instances across the 2 subnet (for HA) with target tracking scaling policy (CPU utilization 80%) to scale in and out within our range of 2 to 10 instances
 * Amazone Linux 2 (AL2) as our OS for its security
 * Docker as our container orchestrator to run our docker image
 * Rust for our application
