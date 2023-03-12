@@ -27,7 +27,7 @@ Table below is a summary of our components
 |Component|Choice|Self-hosted or managed|Global or regional|Remarks|
 |---|---|---|---|---|
 |Cache|Cloudfront|Managed|Global||
-|Rate limiting|WAF (WebACL)|Managed|Global||
+|Rate limiting|WAF (Web ACL)|Managed|Global||
 |Load balancer|ALB|Managed|Regional||
 |Auto scaling|ASG|Managed|Regional||
 |OS|AL2|Self-hosted|x||
