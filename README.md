@@ -35,19 +35,14 @@ Table below is a summary of our components
 |Programming language|Rust|x|x||
 |Database|Dynamodb|Managed|Global or region|We put our table in a region|
 
-Choosing Cloudfront as our cache can improve performance at the same time implement our rate limit policy through WAF WebACL
-
-We choose Application Load Balancer (ALB) as our load balancer and placed it in 2 subnets (us-east-1a and us-east-1b) within a VPC for HA
-
-We choose Auto Scaling Group (ASG) to manage our AL2 instances across the 2 subnet (for HA) with target tracking scaling policy (80% CPU utilization) to scale in and out within our range of 2 to 10 instances
-
-We choose Amazone Linux 2 (AL2) as our OS for its security
-
-We choose Docker as our container orchestrator to run our docker image
-
-We choose Rust for our application
-
-We choose Dynamodb as our database which is a managed service, we deploy it in a region (us-east-1) so it is HA
+Our choice:
+* Cloudfront as our cache can improve performance at the same time implement our rate limit policy through WAF WebACL
+* Application Load Balancer (ALB) as our load balancer and placed it in 2 subnets (us-east-1a and us-east-1b) within a VPC for HA
+* Auto Scaling Group (ASG) to manage our AL2 instances across the 2 subnet (for HA) with target tracking scaling policy (80% CPU utilization) to scale in and out within our range of 2 to 10 instances
+* Amazone Linux 2 (AL2) as our OS for its security
+* Docker as our container orchestrator to run our docker image
+* Rust for our application
+* Dynamodb as our database which is a managed service, we deploy it in a region (us-east-1) so it is HA
 
 # Question 2
 In this lab, create 2 instances on AWS
