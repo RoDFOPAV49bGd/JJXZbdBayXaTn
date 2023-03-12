@@ -27,26 +27,27 @@ Table below is a summary of our components
 |Component|Choice|Self-hosted or managed|Global or regional|Remarks|
 |---|---|---|---|---|
 |Cache|Cloudfront|Managed|Global||
+|Rate limiting|WAF (WebACL)|Managed|Global||
 |Load balancer|ALB|Managed|Regional||
 |Auto scaling|ASG|Managed|Regional||
 |OS|AL2|Self-hosted|x||
 |Orchestrator|Docker|Self-hosted|x||
 |Programming language|Rust|x|x||
-|Database|Dynamodb|Managed|Global or region|We put a table in a region here instead of choosing a global table|
+|Database|Dynamodb|Managed|Global or region|We put our table in a region|
 
-We choose Cloudfront as our cache, Cloudfront is managed and it is a global resource
+Choosing Cloudfront as our cache can improve performance at the same time implement our rate limit policy through WAF WebACL
 
-We choose Application Load Balancer (ALB) as our load balancer, ALB is managed, it is a regional resource and it can be placed in subnets (e.g. us-east-1a and us-east-1b here) within a VPC
+We choose Application Load Balancer (ALB) as our load balancer and placed it in 2 subnets (us-east-1a and us-east-1b) within a VPC for HA
 
-We choose Auto Scaling Group (ASG) as our auto scaling solution, ASG is managed, regional, can be placed in subnets within a VPC and it can set a scaling policy(e.g. 80% CPU utilization here), min and max no. of instances
+We choose Auto Scaling Group (ASG) to manage our AL2 instances across the 2 subnet (for HA) with target tracking scaling policy (80% CPU utilization) to scale in and out within our range of 2 to 10 instances
 
-We choose Amazone Linux 2 (AL2) as our OS
+We choose Amazone Linux 2 (AL2) as our OS for its security
 
-We choose Docker as our container orchestrator
+We choose Docker as our container orchestrator to run our docker image
 
 We choose Rust for our application
 
-We choose Dynamodb as our database, dynamodb is a regional or global resource, we choose regional, so it is HA
+We choose Dynamodb as our database which is a managed service, we deploy it in a region (us-east-1) so it is HA
 
 # Question 2
 In this lab, create 2 instances on AWS
