@@ -3,7 +3,7 @@
 In this lab, we will run our Rust application on Amazon Linux 2 (AL2) with docker
 
 ## Explaination
-Image above shows how it works
+The image above shows how it works
 1. User request our Rust application through Cloudfront
     * If cache hit, Cloudfront will return the cache
     * If cache miss, see 2
