@@ -66,6 +66,11 @@ cd urlshortener/
 docker build -t urlshortener .
 docker run -p8000:8000 -d -e DOMAIN=https://mydomain.com urlshortener
 ```
+Or simply
+```sh
+docker run -p8000:8000 -d -e DOMAIN=https://mydomain.com whshk/jjxzbdbayxatn:v1
+```
+Note that this image is design to work on AL2
 ### Plantuml
 To run our Plantuml
 
