@@ -2,6 +2,7 @@
 ![](question1-arch.png)
 In this lab, we will run our Rust application on Amazon Linux 2 (AL2) with docker
 
+## Explaination
 Image above shows how it works
 1. User request our Rust application through Cloudfront
     * If cache hit, Cloudfront will return the cache
@@ -14,7 +15,15 @@ Image above shows how it works
 7. The response return to Cloudfront
 8. The response return to user
 
-Table below shows our tech stack
+## System design
+The goals of the design are
+* To provide a HA solution
+* There should be no single point of failure
+* Runs on native AL2 with docker installed
+* Application packed in container image for easy deploy and update
+* Scalable when traffic increases or decreases with no code change
+
+
 |Name|Choice|Summary|
 |---|---|---|
 |Cache|Cloudfront|Managed, global|
