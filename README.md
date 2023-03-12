@@ -3,13 +3,13 @@
 In this lab, we will run our Rust application on Amazon Linux 2 (AL2) with docker
 
 ## Explaination
-Image above shows how it works
+The image above shows how it works
 1. User request our Rust application through Cloudfront
     * If cache hit, Cloudfront will return the cache
-    * If cache miss, see 2
-2. Cloudfront has ALB set as its origin forward the request to ALB
+    * If cache miss, go to 2
+2. Cloudfront, has ALB set as its origin, forward the request to ALB
 3. The ALB listener has a ASG set as its target group's target therefore forward the request to one of the instances in the ASG
-4. The Rust application received the request and ask Dynamodb table `urlshortener` for data
+4. The Rust application received the request and ask Dynamodb table `urlshortener-jjxzbdbayxatn` for data
 5. The Dynamodb return the data
 6. The Rust application sends a response back to ALB
 7. The response return to Cloudfront
@@ -24,25 +24,25 @@ The goals of the design are
 * Scalable when traffic increases or decreases with no code change
 
 Table below is a summary of our components
-|Component|Choice|Self-hosted or managed|Global or regional|Remarks|
-|---|---|---|---|---|
-|Cache|Cloudfront|Managed|Global||
-|Rate limiting|WAF (WebACL)|Managed|Global||
-|Load balancer|ALB|Managed|Regional||
-|Auto scaling|ASG|Managed|Regional||
+|Component|Choice|Self-hosted or managed|Global or regional|
+|---|---|---|---|
+|Cache|Cloudfront|Managed|Global|
+|Rate limiting|WAF (Web ACL)|Managed|Global|
+|Load balancer|ALB|Managed|Regional|
+|Auto scaling|ASG|Managed|Regional|
 |OS|AL2|Self-hosted|x||
-|Orchestrator|Docker|Self-hosted|x||
+|Orchestrator|Docker|Self-hosted|x|
 |Programming language|Rust|x|x||
-|Database|Dynamodb|Managed|Global or region|We put our table in a region|
+|Database|Dynamodb|Managed|Regional (can be global)|
 
 Our choice:
-* Cloudfront as our cache can improve performance at the same time implement our rate limit policy through WAF WebACL
+* Cloudfront as our cache can improve performance at the same time we can implement our rate limit policy through WAF Web ACL
 * Application Load Balancer (ALB) as our load balancer and placed it in 2 **public** subnets (us-east-1a and us-east-1b) within a VPC for HA
 * Auto Scaling Group (ASG) to manage our AL2 instances across the 2 **private** subnets (for HA) with target tracking scaling policy (CPU utilization 80%) to scale in and out within our range of 2 to 10 instances
-* Amazone Linux 2 (AL2) as our OS for its security
+* Amazone Linux 2 (AL2) as our OS for its security and native support
 * Docker as our container orchestrator to run our docker image
 * Rust for our application
-* Dynamodb as our database which is a managed service, we deploy it in a region (us-east-1) it is HA by design, access for Dynamodb is grant through a shared instance profile
+* Dynamodb as our database which is a managed service, we deploy it in a region (us-east-1), it is HA by design. Access for Dynamodb is grant through a shared instance profile on table level
 ## Run instructions
 ### CDK (Typescript)
 Follow the following page to setup awscli and cdk
@@ -58,6 +58,19 @@ cdk synth
 cdk deploy
 ```
 ### Urlshortener
+
+To run our urlshortener
+
+```sh
+cd urlshortener/
+docker build -t urlshortener .
+docker run -p8000:8000 -d -e DOMAIN=https://mydomain.com urlshortener
+```
+Or simply
+```sh
+docker run -p8000:8000 -d -e DOMAIN=https://mydomain.com whshk/jjxzbdbayxatn:v1
+```
+Note that this image is design to run on AL2, please check [`cdk-question-1-stack.ts`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/407f9321a40d03aeabfdf9933171c606b19a80ae/cdk-question-1/lib/cdk-question-1-stack.ts#L81-L82) for more details, or you may need to add the following argument `-v /my/home/directory/.aws/:/root/.aws/`
 ### Plantuml
 To run our Plantuml
 
@@ -66,10 +79,13 @@ https://www.planttext.com/
 Copy the raw [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/raw/master/question1-arch.puml) and paste it into the editor
 
 ## Deliverables
-* CDK written in Typescript
-* Urlshortener written in Rust
+* CDK written in Typescript - [`cdk-question-1-stack.ts`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/master/cdk-question-1/lib/cdk-question-1-stack.ts)
+* Urlshortener written in Rust - [`urlshortener/src/`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/tree/master/urlshortener/src)
 * Architecture diagram written in Plantuml - [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/raw/master/question1-arch.puml)
-
+## Assumptions and limitations
+* The [`DOMAIN`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/db919bd317bc29e76f3aaf71fd7d94fb2caa1382/urlshortener/src/main.rs#L48) is an environment variable only know after Cloudfront is provision
+    1. We need to update CDK
+    2. Follow by an instance refresh to get the correct `shortUrl`
 # Question 2
 In this lab, create 2 instances on AWS
 
