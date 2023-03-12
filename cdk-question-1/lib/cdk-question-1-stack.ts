@@ -6,6 +6,7 @@ import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as elbv2 from "aws-cdk-lib/aws-elasticloadbalancingv2";
+import * as iam from "aws-cdk-lib/aws-iam";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 
 export class CdkQuestion1Stack extends cdk.Stack {
@@ -29,6 +30,40 @@ export class CdkQuestion1Stack extends cdk.Stack {
     });
 
     const sg = new ec2.SecurityGroup(this, "Sg", { vpc });
+
+    const policy = new iam.PolicyDocument({
+      statements: [
+        new iam.PolicyStatement({
+          actions: [
+            "dynamodb:List*",
+            "dynamodb:DescribeReservedCapacity*",
+            "dynamodb:DescribeLimits",
+            "dynamodb:DescribeTimeToLive",
+          ],
+          resources: ["*"],
+        }),
+        new iam.PolicyStatement({
+          actions: [
+            "dynamodb:BatchGet*",
+            "dynamodb:DescribeStream",
+            "dynamodb:DescribeTable",
+            "dynamodb:Get*",
+            "dynamodb:Query",
+            "dynamodb:Scan",
+            "dynamodb:BatchWrite*",
+            "dynamodb:CreateTable",
+            "dynamodb:Delete*",
+            "dynamodb:Update*",
+            "dynamodb:PutItem",
+          ],
+          resources: ["arn:aws:dynamodb:*:*:table/urlshortener"],
+        }),
+      ],
+    });
+
+    const role = new iam.Role(this, "Role", {
+      assumedBy: new iam.ServicePrincipal("ec2.amazonaws.com"),
+    });
 
     const asg = new autoscaling.AutoScalingGroup(this, "Asg", {
       vpc,
