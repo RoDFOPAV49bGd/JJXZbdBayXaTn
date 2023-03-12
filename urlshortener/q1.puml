@@ -1,0 +1,62 @@
+
+@startuml
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v15.0/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/AWSExperimental.puml
+!include AWSPuml/Groups/AWSCloud.puml
+!include AWSPuml/Groups/VPC.puml
+!include AWSPuml/Groups/AvailabilityZone.puml
+!include AWSPuml/Groups/PublicSubnet.puml
+!include AWSPuml/Groups/PrivateSubnet.puml
+!include AWSPuml/NetworkingContentDelivery/CloudFront.puml
+!include AWSPuml/NetworkingContentDelivery/ElasticLoadBalancingApplicationLoadBalancer.puml
+!include AWSPuml/Groups/AutoScalingGroup.puml
+!include AWSPuml/Compute/EC2T2Instance.puml
+!include AWSPuml/Database/DynamoDB.puml
+!include AWSPuml/Groups/Region.puml
+
+skinparam linetype ortho
+
+actor User as user
+
+AWSCloudGroup(cloud) {
+
+CloudFront(cloudfront, "", "Rate limit")
+
+RegionGroup(region, "Region us-east-1") {
+DynamoDB(dynamodb, "", "Table urlshortener")
+VPCGroup(vpc) {
+ElasticLoadBalancingApplicationLoadBalancer(alb, "", "")
+AutoScalingGroupGroup(asg, "Auto scaling group, CPU utilization 80%, min 2, max 10") {
+
+AvailabilityZoneGroup(az_1, "us-east-1a") {
+PrivateSubnetGroup(az_1_private) {
+EC2T2Instance(instance1, "Instance 1 of 10", "Docker")
+}
+}
+
+AvailabilityZoneGroup(az_2, "us-east-1b") {
+PrivateSubnetGroup(az_2_private) {
+EC2T2Instance(instance2, "Instance 2 of 10", "Docker")
+}
+}
+
+}
+}
+}
+}
+}
+
+user -r-> cloudfront: <$Callout_1>
+cloudfront -r-> alb: <$Callout_2>
+alb -r-> instance1: <$Callout_3>
+
+instance1 -u-> dynamodb: <$Callout_4>
+dynamodb -d-> instance1: <$Callout_5>
+
+instance1 -l-> alb: <$Callout_6>
+alb -l-> cloudfront: <$Callout_7>
+cloudfront -l-> user: <$Callout_8>
+
+@enduml

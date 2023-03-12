@@ -31,7 +31,7 @@ impl ShortId<'_> {
 
         client
             .put_item()
-            .table_name("test")
+            .table_name("urlshortener")
             .item("shortid", shortid_av)
             .item("url", url_av)
             .send()
@@ -48,7 +48,7 @@ impl ShortId<'_> {
 
         let items = client
             .query()
-            .table_name("test")
+            .table_name("urlshortener")
             .key_condition_expression("shortid = :shortid")
             .expression_attribute_values(":shortid", AttributeValue::S(self.0.to_string()))
             .send()

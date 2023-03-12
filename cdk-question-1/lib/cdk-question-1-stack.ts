@@ -3,6 +3,7 @@ import { Construct } from "constructs";
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 import * as autoscaling from "aws-cdk-lib/aws-autoscaling";
 import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
+import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as elbv2 from "aws-cdk-lib/aws-elasticloadbalancingv2";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
@@ -64,6 +65,11 @@ export class CdkQuestion1Stack extends cdk.Stack {
           protocolPolicy: cloudfront.OriginProtocolPolicy.HTTP_ONLY,
         }),
       },
+    });
+
+    new dynamodb.Table(this, "Table", {
+      tableName: "urlshortener",
+      partitionKey: { name: "shortid", type: dynamodb.AttributeType.STRING },
     });
   }
 }
