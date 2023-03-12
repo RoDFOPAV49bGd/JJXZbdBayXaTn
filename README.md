@@ -71,8 +71,8 @@ Or simply
 docker run -p8000:8000 -d -e DOMAIN=https://mydomain.com whshk/jjxzbdbayxatn:v1
 ```
 Note that this image is design to run on AL2, please check [`cdk-question-1-stack.ts`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/407f9321a40d03aeabfdf9933171c606b19a80ae/cdk-question-1/lib/cdk-question-1-stack.ts#L81-L82) for more details, or you may need to add the following argument `-v /my/home/directory/.aws/:/root/.aws/`
-### Plantuml
-To run our Plantuml
+### PlantUML
+To run our PlantUML
 
 https://www.planttext.com/
 
@@ -81,7 +81,7 @@ Copy the raw [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayX
 ## Deliverables
 * CDK written in Typescript - [`cdk-question-1-stack.ts`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/master/cdk-question-1/lib/cdk-question-1-stack.ts)
 * Urlshortener written in Rust - [`urlshortener/src/`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/tree/master/urlshortener/src)
-* Architecture diagram written in Plantuml - [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/raw/master/question1-arch.puml)
+* Architecture diagram written in PlantUML - [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/raw/master/question1-arch.puml)
 ## Assumptions and limitations
 * The [`DOMAIN`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/db919bd317bc29e76f3aaf71fd7d94fb2caa1382/urlshortener/src/main.rs#L48) is an environment variable only know after Cloudfront is provision
     1. We need to first update our CDK [user data](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/22b6ae1f895a22f719d506cb5648c312607787e3/cdk-question-1/lib/cdk-question-1-stack.ts#L77)
