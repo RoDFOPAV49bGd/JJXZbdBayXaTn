@@ -74,7 +74,7 @@ export class CdkQuestion1Stack extends cdk.Stack {
       "amazon-linux-extras install docker -y",
       "sudo systemctl enable --now docker",
       "docker pull whshk/jjxzbdbayxatn:v1",
-      "docker run -p8000:8000 -d -e DOMAIN=https://d8li0jhtvfude.cloudfront.net whshk/jjxzbdbayxatn:v1"
+      "docker run -p8000:8000 -d -e DOMAIN=https://d3jqzdh48hvxya.cloudfront.net whshk/jjxzbdbayxatn:v1"
     );
 
     const launchTemplate = new ec2.LaunchTemplate(this, "LaunchTemplate", {
