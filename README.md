@@ -33,7 +33,7 @@ Table below is a summary of our components
 |OS|AL2|Self-hosted|x||
 |Orchestrator|Docker|Self-hosted|x|
 |Programming language|Rust|x|x||
-|Database|Dynamodb|Managed|Region (can be global)|
+|Database|Dynamodb|Managed|Regional (can be global)|
 
 Our choice:
 * Cloudfront as our cache can improve performance at the same time implement our rate limit policy through WAF WebACL
