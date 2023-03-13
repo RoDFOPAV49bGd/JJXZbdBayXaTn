@@ -87,7 +87,7 @@ Copy the raw [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayX
     1. We need to first update our CDK [user data](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/22b6ae1f895a22f719d506cb5648c312607787e3/cdk-question-1/lib/cdk-question-1-stack.ts#L77)
     2. Follow by an instance refresh to get the correct `shortUrl`
 # Question 2
-In this lab, create 2 instances on AWS
+In this lab, we will create 2 instances on AWS
 
 We will choose **Amazon Linux 2** as our OS
 
