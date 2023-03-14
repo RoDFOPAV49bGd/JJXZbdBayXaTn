@@ -90,7 +90,7 @@ Copy the raw [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayX
 # Question 2
 In this lab, we will create 2 instances on AWS
 
-We will choose **Amazon Linux 2** as our OS
+We will choose Amazon Linux 2 as our OS
 
 Instance 1 will be our cronos node
 
