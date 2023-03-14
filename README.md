@@ -57,6 +57,7 @@ npm i
 cdk synth
 cdk deploy
 ```
+Note that you may need to manually delete the DynamoDB table `urlshortener-jjxzbdbayxatn` if redeploy
 ### Urlshortener
 
 To run our urlshortener
