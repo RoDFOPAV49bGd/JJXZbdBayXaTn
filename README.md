@@ -9,8 +9,8 @@ The image above shows how it works
     * If cache miss, go to 2
 2. Cloudfront, has ALB set as its origin, forward the request to ALB
 3. The ALB listener has a ASG set as its target group's target therefore forward the request to one of the instances in the ASG
-4. The Rust application received the request and ask Dynamodb table `urlshortener-jjxzbdbayxatn` for data
-5. The Dynamodb return the data
+4. The Rust application received the request and ask DynamoDB table `urlshortener-jjxzbdbayxatn` for data
+5. The DynamoDB return the data
 6. The Rust application sends a response back to ALB
 7. The response return to Cloudfront
 8. The response return to user
@@ -33,7 +33,7 @@ Table below is a summary of our components
 |OS|AL2|Self-hosted|x||
 |Orchestrator|Docker|Self-hosted|x|
 |Programming language|Rust|x|x||
-|Database|Dynamodb|Managed|Regional (can be global)|
+|Database|DynamoDB|Managed|Regional (can be global)|
 
 Our choice:
 * Cloudfront as our cache can improve performance at the same time we can implement our rate limit policy through WAF Web ACL
