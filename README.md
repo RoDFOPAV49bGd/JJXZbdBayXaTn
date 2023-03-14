@@ -137,6 +137,6 @@ Create a new dashboard with [`dashboard.json`](https://github.com/RoDFOPAV49bGd/
 * Ansible playbook for telemetry node - [`playbook-telemetry.yaml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/raw/master/playbook-telemetry.yaml)
 * Grafana dashboard json - [`dashboard.json`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/raw/master/dashboard.json)
 ## Assumptions and limitations
-* The telemetry playbook only works on AL2
+* The telemetry playbook only works on AL2, because of [this line](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/44d4321a5f34f7c068fce2731d458c74489a8734/role-docker/tasks/main.yml#L4) of a dependency (it could easily be fix)
 ## Problems
 * The cronos node metrics only contains `tendermint_mempool_size`, but not `tendermint_consensus_block_size_bytes`, `tendermint_consensus_num_txs` nor `tendermint_consensus_rounds`
