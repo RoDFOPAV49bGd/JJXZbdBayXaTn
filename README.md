@@ -81,7 +81,7 @@ Copy the raw [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayX
 
 ## Deliverables
 * CDK written in Typescript - [`cdk-question-1-stack.ts`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/master/cdk-question-1/lib/cdk-question-1-stack.ts)
-* Urlshortener written in Rust - [`main.rs`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/master/urlshortener/src/main.rs), [`short_id.rs`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/master/urlshortener/src/short_id.rs)
+* Urlshortener written in Rust and a Dockerfile - [`main.rs`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/master/urlshortener/src/main.rs), [`short_id.rs`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/master/urlshortener/src/short_id.rs), [`Dockerfile`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/master/urlshortener/Dockerfile)
 * Architecture diagram written in PlantUML - [`question1-arch.puml`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/raw/master/question1-arch.puml)
 ## Assumptions and limitations
 * The [`DOMAIN`](https://github.com/RoDFOPAV49bGd/JJXZbdBayXaTn/blob/db919bd317bc29e76f3aaf71fd7d94fb2caa1382/urlshortener/src/main.rs#L48) is an environment variable only know after Cloudfront is provision
