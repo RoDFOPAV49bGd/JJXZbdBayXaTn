@@ -42,7 +42,7 @@ Our choice:
 * Amazone Linux 2 (AL2) as our OS for its security and native support
 * Docker as our container orchestrator to run our docker image
 * Rust for our application
-* Dynamodb as our database which is a managed service, we deploy it in a region (us-east-1), it is HA by design. Access for Dynamodb is grant through a shared instance profile on table level
+* DynamoDB as our database which is a managed service, we deploy it in a region (us-east-1), it is HA by design. Access for DynamoDB is grant through a shared instance profile on table level
 ## Run instructions
 ### CDK (Typescript)
 Follow the following page to setup awscli and cdk
